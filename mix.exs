@@ -49,7 +49,16 @@ defmodule VaccinationApi.MixProject do
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+
+      ### other third dependencies
+      {:bee, "~> 0.4.2"},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:mix_test_watch, "~> 1.0", only: [:test], runtime: false},
+      {:phoenix_swagger, github: "andridus/phoenix_swagger"},
+      {:happy, "~> 1.3.1"},
+      {:brcpfcnpj, "~> 1.0.0"},
+      {:guardian, "~> 2.0"}
     ]
   end
 
