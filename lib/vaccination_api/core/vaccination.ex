@@ -5,6 +5,7 @@ defmodule VaccinationApi.Core.Vaccination do
     Vaccination register
   """
 
+  alias VaccinationApi.Core.{HealthProfessional, Person, Vaccine}
   use VaccinationApi.Schema
 
   @shot_enum [:shot_1, :shot_2, :shot_3, :shot_4]
@@ -17,6 +18,10 @@ defmodule VaccinationApi.Core.Vaccination do
       field :token, :string
 
       timestamps()
+
+      belongs_to :person, Person
+      belongs_to :health_professional, HealthProfessional
+      belongs_to :vaccine, Vaccine
     end
   end
 

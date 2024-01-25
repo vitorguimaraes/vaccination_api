@@ -5,6 +5,8 @@ defmodule VaccinationApi.Core.Person do
     User Person to access platform
   """
 
+  alias VaccinationApi.Utils
+  alias VaccinationApi.Core.{Vaccination}
   use VaccinationApi.Schema
 
   generate_bee do
@@ -20,11 +22,18 @@ defmodule VaccinationApi.Core.Person do
       field :password, :string
 
       timestamps()
+
+      has_many :vaccination, Vaccination
     end
   end
 
   def changeset(model, attrs), do: changeset_(model, attrs, :insert)
-  def changeset_insert(model, attrs), do: changeset_(model, attrs, :insert)
+
+  def changeset_insert(model, attrs) do
+    changeset_(model, attrs, :insert)
+    |> Utils.validate_cpf()
+  end
+
   def changeset_update(model, attrs), do: changeset_(model, attrs, :update)
 
   defmodule Api do
