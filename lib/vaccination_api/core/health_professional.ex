@@ -13,6 +13,9 @@ defmodule VaccinationApi.Core.HealthProfessional do
     schema "health_professional" do
       field :first_name, :string
       field :last_name, :string
+      field :email, :string
+      field :password, :string, virtual: true, redact: true
+      field :hashed_password, :string, redact: true
       field :professional_register, :string, bee: [required: true]
       field :cpf, :string, bee: [required: true]
 
