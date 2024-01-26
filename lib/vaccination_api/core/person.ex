@@ -14,15 +14,15 @@ defmodule VaccinationApi.Core.Person do
 
   generate_bee do
     schema "person" do
-      field :first_name, :string
-      field :last_name, :string
-      field :birth, :date
+      field :first_name, :string, bee: [required: true]
+      field :last_name, :string, bee: [required: true]
+      field :birth, :date, bee: [required: true]
       field :cpf, :string, bee: [required: true]
       field :sus_number, :string, bee: [required: true]
-      field :mother_name, :string
-      field :gender, Ecto.Enum, values: @gender_enum
+      field :mother_name, :string, bee: [required: true]
+      field :gender, Ecto.Enum, values: @gender_enum, bee: [required: true]
       field :email, :string, bee: [required: true]
-      field :__password__, :string, virtual: true, redact: true
+      field :__password__, :string, virtual: true, redact: true, bee: [required: true]
       field :hashed_password, :string, redact: true
 
       timestamps()
@@ -65,5 +65,11 @@ defmodule VaccinationApi.Core.Person do
 
     @schema VaccinationApi.Core.Person
     use Bee.Api
+
+    def check_password(%{hashed_password: nil}, _password), do: false
+
+    def check_password(%{hashed_password: hashed_password}, password) do
+      Bcrypt.verify_pass(password, hashed_password)
+    end
   end
 end

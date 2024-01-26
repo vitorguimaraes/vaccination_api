@@ -3,9 +3,9 @@ defmodule VaccinationApi.Repo.Migrations.CreateVaccine do
 
   def change do
     create table(:vaccine) do
-      add :name, :string
-      add :lot, :string
-      add :expiration_date, :date
+      add :name, :string, null: false
+      add :lot, :string, null: false
+      add :expiration_date, :date, null: false
 
       timestamps()
 

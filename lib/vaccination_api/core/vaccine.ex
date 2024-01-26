@@ -10,9 +10,9 @@ defmodule VaccinationApi.Core.Vaccine do
 
   generate_bee do
     schema "vaccine" do
-      field :name, :string
-      field :lot, :string
-      field :expiration_date, :date
+      field :name, :string, bee: [required: true]
+      field :lot, :string, bee: [required: true]
+      field :expiration_date, :date, bee: [required: true]
 
       timestamps()
 

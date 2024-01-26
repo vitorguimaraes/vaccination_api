@@ -11,13 +11,13 @@ defmodule VaccinationApi.Core.HealthProfessional do
 
   generate_bee do
     schema "health_professional" do
-      field :first_name, :string
-      field :last_name, :string
-      field :email, :string
-      field :password, :string, virtual: true, redact: true
-      field :hashed_password, :string, redact: true
-      field :professional_register, :string, bee: [required: true]
+      field :first_name, :string, bee: [required: true]
+      field :last_name, :string, bee: [required: true]
       field :cpf, :string, bee: [required: true]
+      field :professional_register, :string, bee: [required: true]
+      field :email, :string, bee: [required: true]
+      field :__password__, :string, virtual: true, redact: true
+      field :hashed_password, :string, redact: true, bee: [required: true]
 
       timestamps()
 
