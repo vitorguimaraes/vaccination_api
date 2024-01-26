@@ -9,6 +9,8 @@ defmodule VaccinationApi.Core.HealthProfessional do
   alias VaccinationApi.Core.{Vaccination}
   use VaccinationApi.Schema
 
+  @fields [:first_name, :last_name, :cpf, :professional_register, :email, :__password__]
+
   generate_bee do
     schema "health_professional" do
       field :first_name, :string, bee: [required: true]
@@ -25,13 +27,16 @@ defmodule VaccinationApi.Core.HealthProfessional do
     end
   end
 
-  def changeset(model, attrs), do: changeset_(model, attrs, :insert)
-
-  def changeset_insert(model, attrs) do
-    changeset_(model, attrs, :insert)
+    def changeset(model \\ %__MODULE__{}, attrs) do
+    model
+    |> cast(attrs, @fields)
+    |> validate_format(:email, ~r/@/)
     |> Utils.validate_cpf()
+    |> unique_constraint(:cpf)
+    |> Utils.put_password_hash()
   end
 
+  def changeset_insert(model, attrs), do: changeset_(model, attrs, :insert)
   def changeset_update(model, attrs), do: changeset_(model, attrs, :update)
 
   defmodule Api do
@@ -39,5 +44,11 @@ defmodule VaccinationApi.Core.HealthProfessional do
 
     @schema VaccinationApi.Core.HealthProfessional
     use Bee.Api
+
+    def check_password(%{hashed_password: nil}, _password), do: false
+
+    def check_password(%{hashed_password: hashed_password}, password) do
+      Bcrypt.verify_pass(password, hashed_password)
+    end
   end
 end
