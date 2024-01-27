@@ -1,8 +1,8 @@
-defmodule VaccinationApi.Factory.Person do
+defmodule Factory.Person do
   @moduledoc """
     Functions to create persons on various scenarios
   """
-  alias VaccinationApi.Factory
+  alias Factory.Base
 
   @doc """
     Creates a person
