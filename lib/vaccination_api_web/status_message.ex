@@ -14,17 +14,6 @@ defmodule VaccinationApiWeb.StatusMessage do
     {409, :conflict},
     {422, :form_error},
     {500, :internal_server_error},
-    ## account
-    {422, :account_not_found},
-    {422, :account_was_deleted},
-    {422, :account_id_is_nil},
-    {422, :password_dont_match},
-    {422, :password_length_should_be_four},
-    ## auth
-    {422, :email_or_password_invalid},
-    ## transaction
-    {422, :invalid_password},
-    {422, :operation_not_allowed_for_this_user}
   ]
   def from_message("param_" <> _key), do: 400
 
