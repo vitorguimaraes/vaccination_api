@@ -1,4 +1,4 @@
-defmodule VaccinationApi.Factory do
+defmodule Factory do
   @moduledoc """
     This module configure default for all schemas for Factory tests
   """
