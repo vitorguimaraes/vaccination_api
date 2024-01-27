@@ -10,31 +10,17 @@ defmodule VaccinationApi.Utils do
     Access.fetch(params, param)
   end
 
-  def validate_cpf(%{changes: params} = model) do
-    cpf = params[:cpf]
+  @doc """
+    return only visible fields, permission based
+  """
+  def visible_fields({:error, error}, _permission), do: {:error, error}
 
-    cond do
-      Brcpfcnpj.cpf_valid?(cpf) == false ->
-        Ecto.Changeset.add_error(model, :cpf, "cpf is invalid")
-
-      :else ->
-        model
-    end
+  def visible_fields({:ok, %{__struct__: entity} = model}, permission) do
+    {:ok, Map.take(model, entity.bee_permission(permission))}
   end
 
-  def put_password_hash(%{changes: %{__password__: password}} = changeset) do
-    if password && changeset.valid? do
-      changeset
-      |> validate_length(:__password__, min: 8, message: "Password must be at least eight characters")
-      |> validate_format(:__password__, ~r/[0-9]+/, message: "Password must contain a number")
-      |> validate_format(:__password__, ~r/[A-Z]+/, message: "Password must contain an upper-case letter")
-      |> validate_format(:__password__, ~r/[a-z]+/, message: "Password must contain a lower-case letter")
-      |> validate_format(:__password__, ~r/[#\!\?&@\$%^&*\(\)]+/, message: "Password must contain a symbol")
-      |> put_change(:hashed_password, Bcrypt.hash_pwd_salt(password))
-      |> delete_change(:__password__)
-    else
-      changeset
-    end
+  def visible_fields(%{__struct__: entity} = model, permission) do
+    Map.take(model, entity.bee_permission(permission))
   end
 
   @doc """

@@ -21,11 +21,10 @@ defmodule VaccinationApiWeb.StatusMessage do
     {422, :password_dont_match},
     {422, :password_length_should_be_four},
     ## auth
-    {422, :cpf_or_password_invalid},
+    {422, :email_or_password_invalid},
     ## transaction
     {422, :invalid_password},
-    {422, :operation_not_allowed_for_this_user},
-    {422, :already_refunded}
+    {422, :operation_not_allowed_for_this_user}
   ]
   def from_message("param_" <> _key), do: 400
 
