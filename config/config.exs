@@ -8,8 +8,8 @@
 import Config
 
 config :vaccination_api,
-  ecto_repos: [VaccinationApi.Repo],
-  generators: [binary_id: true]
+  ecto_repos: [VaccinationApi.Repo]
+  config :vaccination_api, VaccinationApi.Repo, migration_primary_key: [type: :binary_id]
 
 # Configures the endpoint
 config :vaccination_api, VaccinationApiWeb.Endpoint,
@@ -20,6 +20,12 @@ config :vaccination_api, VaccinationApiWeb.Endpoint,
   ],
   pubsub_server: VaccinationApi.PubSub,
   live_view: [signing_salt: "mdfLLQ+j"]
+
+config :vaccination_api, VaccinationApiWeb.Auth,
+  issuer: "vaccination_api",
+  secret_key: "7AV+0lMwQYHdjiPlbu0fcpYlD1g9ooJsYH20LRdDaqrkU/WRokgBixM/TQpi0K3S"
+
+  config :bee, :repo, VaccinationApi.Repo
 
 # Configures the mailer
 #
