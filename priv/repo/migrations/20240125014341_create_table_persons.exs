@@ -15,5 +15,9 @@ defmodule VaccinationApi.Repo.Migrations.CreatePerson do
 
       timestamps()
     end
+
+    create unique_index(:person, [:cpf])
+    create unique_index(:person, [:sus_number])
+    create unique_index(:person, [:email])
   end
 end

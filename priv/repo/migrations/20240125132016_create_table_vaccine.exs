@@ -8,7 +8,6 @@ defmodule VaccinationApi.Repo.Migrations.CreateVaccine do
       add :expiration_date, :date, null: false
 
       timestamps()
-
     end
   end
 end
