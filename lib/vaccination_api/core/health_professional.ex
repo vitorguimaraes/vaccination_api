@@ -8,7 +8,7 @@ defmodule VaccinationApi.Core.HealthProfessional do
   alias VaccinationApi.Core.Vaccination
   use VaccinationApi.Schema
 
-  @basic_fields [:first_name, :last_name, :cpf, :professional_register, :email]
+  @basic_fields [:id, :first_name, :last_name, :cpf, :professional_register, :email]
 
   generate_bee do
     permission(:basic, @basic_fields)

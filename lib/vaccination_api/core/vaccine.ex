@@ -8,7 +8,11 @@ defmodule VaccinationApi.Core.Vaccine do
   alias VaccinationApi.Core.{Vaccination}
   use VaccinationApi.Schema
 
+  @basic_fields [:id, :name, :lot, :expiration_date]
+
   generate_bee do
+    permission(:basic, @basic_fields)
+
     schema "vaccine" do
       field :name, :string, bee: [required: true]
       field :lot, :string, bee: [required: true]
@@ -26,7 +30,7 @@ defmodule VaccinationApi.Core.Vaccine do
   defmodule Api do
     @moduledoc false
 
-    @schema VaccinationApi.Core.Vaccination
+    @schema VaccinationApi.Core.Vaccine
     use Bee.Api
   end
 end
