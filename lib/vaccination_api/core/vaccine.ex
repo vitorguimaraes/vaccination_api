@@ -20,7 +20,6 @@ defmodule VaccinationApi.Core.Vaccine do
     end
   end
 
-  def changeset(model, attrs), do: changeset_(model, attrs, :insert)
   def changeset_insert(model, attrs), do: changeset_(model, attrs, :insert)
   def changeset_update(model, attrs), do: changeset_(model, attrs, :update)
 
