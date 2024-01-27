@@ -8,9 +8,11 @@ defmodule VaccinationApi.Core.HealthProfessional do
   alias VaccinationApi.Core.Vaccination
   use VaccinationApi.Schema
 
-  @fields [:first_name, :last_name, :cpf, :professional_register, :email, :__password__]
+  @basic_fields [:first_name, :last_name, :cpf, :professional_register, :email]
 
   generate_bee do
+    permission(:basic, @basic_fields)
+
     schema "health_professional" do
       field :first_name, :string, bee: [required: true]
       field :last_name, :string, bee: [required: true]
@@ -18,7 +20,7 @@ defmodule VaccinationApi.Core.HealthProfessional do
       field :professional_register, :string, bee: [required: true]
       field :email, :string, bee: [required: true]
       field :__password__, :string, virtual: true, redact: true
-      field :hashed_password, :string, redact: true, bee: [required: true]
+      field :hashed_password, :string, redact: true
 
       timestamps()
 
@@ -26,17 +28,18 @@ defmodule VaccinationApi.Core.HealthProfessional do
     end
   end
 
-  def changeset(model \\ %__MODULE__{}, attrs) do
-    model
-    |> cast(attrs, @fields)
+  def changeset_insert(model, attrs) do
+    changeset_(model, attrs, :insert)
     |> validate_format(:email, ~r/@/, message: "invalid email format")
     |> validate_cpf()
     |> unique_constraint(:cpf)
     |> put_password_hash()
   end
 
-  def changeset_insert(model, attrs), do: changeset_(model, attrs, :insert)
-  def changeset_update(model, attrs), do: changeset_(model, attrs, :update)
+  def changeset_update(model, attrs) do
+    changeset_(model, attrs, :update)
+    |> validate_format(:email, ~r/@/, message: "invalid email format")
+  end
 
   defp validate_cpf(%{changes: %{cpf: cpf}} = changeset) do
     cond do

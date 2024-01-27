@@ -2,7 +2,7 @@ defmodule VaccinationApi.Core.Person do
   @moduledoc """
     Person Entity
     ---
-    User Person to access vaccination platform as person who will take vaccine
+    User who access vaccination platform as person who will take vaccine
   """
 
   alias VaccinationApi.Core.Vaccination
@@ -43,7 +43,11 @@ defmodule VaccinationApi.Core.Person do
     |> put_password_hash()
   end
 
-  def changeset_update(model, attrs), do: changeset_(model, attrs, :update)
+  def changeset_update(model, attrs) do
+    changeset_(model, attrs, :update)
+    |> validate_format(:email, ~r/@/, message: "invalid email format")
+    |> validate_length(:sus_number, is: 15, message: "SUS number must have fifteen digits")
+  end
 
   defp validate_cpf(%{changes: %{cpf: cpf}} = changeset) do
     cond do
