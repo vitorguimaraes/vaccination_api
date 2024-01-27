@@ -44,10 +44,19 @@ defmodule VaccinationApiWeb.Router do
 
     scope "/" do
       pipe_through [:authed]
+
       get "/persons/:person_id", PersonsController, :one
       get "/persons", PersonsController, :all
       patch "/persons/:person_id", PersonsController, :patch
       delete "/persons/:person_id", PersonsController, :delete
+    end
+
+    scope "/" do
+      post "/health_professionals", HealthProfessionalsController, :create
+      get "/health_professionals/:health_professional_id", HealthProfessionalsController, :one
+      get "/health_professionals", HealthProfessionalsController, :all
+      patch "/health_professionals/:health_professional_id", HealthProfessionalsController, :patch
+      delete "/health_professionals/:health_professional_id", HealthProfessionalsController, :delete
     end
   end
 
