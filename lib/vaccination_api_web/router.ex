@@ -58,6 +58,14 @@ defmodule VaccinationApiWeb.Router do
       patch "/health_professionals/:health_professional_id", HealthProfessionalsController, :patch
       delete "/health_professionals/:health_professional_id", HealthProfessionalsController, :delete
     end
+
+    scope "/" do
+      post "/vaccines", VaccinesController, :create
+      get "/vaccines/:vaccine_id", VaccinesController, :one
+      get "/vaccines", VaccinesController, :all
+      patch "/vaccines/:vaccine_id", VaccinesController, :patch
+      delete "/vaccines/:vaccine_id", VaccinesController, :delete
+    end
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
