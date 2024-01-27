@@ -23,7 +23,7 @@ defmodule VaccinationApi.Core.Person do
       field :mother_name, :string, bee: [required: true]
       field :gender, Ecto.Enum, values: @gender_enum, bee: [required: true]
       field :email, :string, bee: [required: true]
-      field :__password__, :string, virtual: true, redact: true, bee: [required: true]
+      field :__password__, :string, virtual: true, redact: true
       field :hashed_password, :string, redact: true
 
       timestamps()
@@ -43,7 +43,6 @@ defmodule VaccinationApi.Core.Person do
     |> put_password_hash()
   end
 
-  def changeset_insert(model, attrs), do: changeset_(model, attrs, :insert)
   def changeset_update(model, attrs), do: changeset_(model, attrs, :update)
 
   defp validate_cpf(%{changes: %{cpf: cpf}} = changeset) do

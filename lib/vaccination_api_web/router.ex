@@ -31,7 +31,7 @@ defmodule VaccinationApiWeb.Router do
 
     # authenticate
     scope "/auth" do
-      post "/login", AuthController, :login
+      post "/person_login", AuthController, :login
 
       scope "/" do
         pipe_through [:authed]
@@ -41,6 +41,14 @@ defmodule VaccinationApiWeb.Router do
 
     # person
     post "/persons", PersonsController, :create
+
+    scope "/" do
+      pipe_through [:authed]
+      get "/persons/:person_id", PersonsController, :one
+      get "/persons", PersonsController, :all
+      patch "/persons/:person_id", PersonsController, :patch
+      delete "/persons/:person_id", PersonsController, :delete
+    end
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
