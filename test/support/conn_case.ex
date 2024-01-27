@@ -16,6 +16,7 @@ defmodule VaccinationApiWeb.ConnCase do
   """
 
   use ExUnit.CaseTemplate
+  import Plug.Conn
 
   using do
     quote do
@@ -30,6 +31,33 @@ defmodule VaccinationApiWeb.ConnCase do
       import VaccinationApiWeb.ConnCase
     end
   end
+
+  def authed_conn(token) when is_bitstring(token) do
+    Phoenix.ConnTest.build_conn()
+    |> put_req_header("authorization", "Bearer #{token}")
+  end
+
+  def authed_conn(%{authed: user}), do: authed_conn(user)
+
+  def authed_conn(%{"id" => _id} = user),
+    do:
+      Map.to_list(user)
+      |> Enum.map(fn {x, y} -> {String.to_atom(x), y} end)
+      |> Map.new()
+      |> authed_conn()
+
+  def authed_conn(user) do
+    {_, token, _} = user |> VaccinationApiWeb.Auth.encode_and_sign()
+
+    Phoenix.ConnTest.build_conn()
+    |> put_req_header("authorization", "Bearer #{token}")
+  end
+
+  def anonymous_conn do
+    Phoenix.ConnTest.build_conn()
+  end
+
+  def get_resp_body(conn), do: conn |> Map.get(:resp_body) |> Jason.decode!()
 
   setup tags do
     VaccinationApi.DataCase.setup_sandbox(tags)
