@@ -7,7 +7,17 @@ defmodule VaccinationApi.Utils do
     Get param
   """
   def get_param(params, param) do
-    Access.fetch(params, param)
+    case Access.fetch(params, param) do
+      {:ok, param} -> {:ok, param}
+      :error -> {:error, :not_found}
+    end
+  end
+
+  @doc """
+    Remove nil fields
+  """
+  def remove_nil_fields(params) do
+    for({key, value} <- params, !is_nil(value) && value != "nil", into: %{}, do: {key, value})
   end
 
   @doc """
