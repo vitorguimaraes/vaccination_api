@@ -52,6 +52,8 @@ defmodule VaccinationApiWeb.Router do
     end
 
     scope "/" do
+      pipe_through [:authed]
+
       post "/health_professionals", HealthProfessionalsController, :create
       get "/health_professionals/:health_professional_id", HealthProfessionalsController, :one
       get "/health_professionals", HealthProfessionalsController, :all
@@ -60,6 +62,8 @@ defmodule VaccinationApiWeb.Router do
     end
 
     scope "/" do
+      pipe_through [:authed]
+
       post "/vaccines", VaccinesController, :create
       get "/vaccines/:vaccine_id", VaccinesController, :one
       get "/vaccines", VaccinesController, :all
