@@ -16,4 +16,4 @@ if [[ "$running_containers" == *"db_service"* ]]; then
 fi
 
 docker compose up -d 
-docker exec -it $CONTAINER_NAME sh
+docker exec -it $APP_CONTAINER_NAME sh
