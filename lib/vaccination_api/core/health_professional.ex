@@ -5,7 +5,7 @@ defmodule VaccinationApi.Core.HealthProfessional do
     User who applies vaccination to persons
   """
 
-  alias VaccinationApi.Core.{User, Vaccination}
+  alias VaccinationApi.Core.{HealthCenter, User, Vaccination}
   use VaccinationApi.Schema
 
   @basic_fields [:id, :first_name, :last_name, :cpf, :professional_register]
@@ -21,8 +21,9 @@ defmodule VaccinationApi.Core.HealthProfessional do
 
       timestamps()
 
-      has_many :vaccination, Vaccination
       belongs_to :user, User
+      has_many :vaccination, Vaccination
+      many_to_many :health_center, HealthCenter, join_through: "professional_works_in"
     end
   end
 

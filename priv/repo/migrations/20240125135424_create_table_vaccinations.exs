@@ -8,6 +8,7 @@ defmodule VaccinationApi.Repo.Migrations.CreateVaccination do
       add :token, :string
 
       add :person_id, references(:persons, on_delete: :delete_all)
+      add :health_center_id, references(:health_centers, on_delete: :nothing)
       add :health_professional_id, references(:health_professionals, on_delete: :nothing)
       add :vaccine_id, references(:vaccines, on_delete: :nothing)
 

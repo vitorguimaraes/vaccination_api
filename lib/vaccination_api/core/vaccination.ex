@@ -5,7 +5,7 @@ defmodule VaccinationApi.Core.Vaccination do
     Vaccination register
   """
 
-  alias VaccinationApi.Core.{HealthProfessional, Person, Vaccine}
+  alias VaccinationApi.Core.{HealthCenter, HealthProfessional, Person, Vaccine}
   use VaccinationApi.Schema
 
   @shot_enum [:shot_1, :shot_2, :shot_3, :shot_4]
@@ -23,6 +23,7 @@ defmodule VaccinationApi.Core.Vaccination do
 
       belongs_to :person, Person
       belongs_to :health_professional, HealthProfessional
+      belongs_to :health_center, HealthCenter
       belongs_to :vaccine, Vaccine
     end
   end
@@ -32,8 +33,9 @@ defmodule VaccinationApi.Core.Vaccination do
     |> validate_inclusion(:shot, @shot_enum)
     |> cast_assoc(:person)
     |> cast_assoc(:health_professional)
+    |> cast_assoc(:health_center)
     |> cast_assoc(:vaccine)
-    |> validate_required([:person, :health_professional, :vaccine])
+    |> validate_required([:person, :health_center, :health_professional, :vaccine])
   end
 
   def changeset_update(model, attrs), do: changeset_(model, attrs, :update)

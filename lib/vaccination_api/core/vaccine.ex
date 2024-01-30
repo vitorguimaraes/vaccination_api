@@ -5,7 +5,7 @@ defmodule VaccinationApi.Core.Vaccine do
     Vaccine data
   """
 
-  alias VaccinationApi.Core.{Vaccination}
+  alias VaccinationApi.Core.{HealthCenter, Vaccination}
   use VaccinationApi.Schema
 
   @basic_fields [:id, :name, :lot, :expiration_date]
@@ -21,6 +21,7 @@ defmodule VaccinationApi.Core.Vaccine do
       timestamps()
 
       has_many :vaccination, Vaccination
+      many_to_many :health_center, HealthCenter, join_through: "health_center_vaccines"
     end
   end
 
