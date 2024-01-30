@@ -13,10 +13,10 @@ defmodule VaccinationApi.Core.Vaccine do
   generate_bee do
     permission(:basic, @basic_fields)
 
-    schema "vaccine" do
-      field :name, :string, bee: [required: true]
-      field :lot, :string, bee: [required: true]
-      field :expiration_date, :date, bee: [required: true]
+    schema "vaccines" do
+      field :name, :string
+      field :lot, :string
+      field :expiration_date, :date
 
       timestamps()
 
@@ -24,7 +24,11 @@ defmodule VaccinationApi.Core.Vaccine do
     end
   end
 
-  def changeset_insert(model, attrs), do: changeset_(model, attrs, :insert)
+  def changeset_insert(model, attrs) do
+    changeset_(model, attrs, :insert)
+    |> validate_required([:name, :lot, :expiration_date])
+  end
+
   def changeset_update(model, attrs), do: changeset_(model, attrs, :update)
 
   defmodule Api do
