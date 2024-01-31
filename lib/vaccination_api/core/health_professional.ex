@@ -38,14 +38,14 @@ defmodule VaccinationApi.Core.HealthProfessional do
   def changeset_update(model, attrs), do: changeset_(model, attrs, :update)
 
   defp validate_cpf(%{changes: %{cpf: cpf}} = changeset) do
-    cond do
-      Brcpfcnpj.cpf_valid?(cpf) == false ->
-        Ecto.Changeset.add_error(changeset, :cpf, "cpf is invalid")
-
-      :else ->
-        changeset
+    if Brcpfcnpj.cpf_valid?(cpf) do
+      changeset
+    else
+      Ecto.Changeset.add_error(changeset, :cpf, "cpf is invalid")
     end
   end
+
+  defp validate_cpf(%{changes: %{}} = changeset), do: changeset
 
   defmodule Api do
     @moduledoc false
