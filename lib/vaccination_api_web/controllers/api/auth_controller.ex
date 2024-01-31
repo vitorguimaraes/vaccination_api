@@ -1,15 +1,15 @@
 defmodule VaccinationApiWeb.AuthController do
   use VaccinationApiWeb, :controller
 
-  alias VaccinationApi.PersonContext
+  alias VaccinationApi.UserContext
   alias VaccinationApiWeb.{Auth, Response}
 
   def login(conn, params) do
     params
-    |> PersonContext.authenticate_access()
+    |> UserContext.authenticate_access()
     |> case do
-      {:ok, person} ->
-        {:ok, token, _claims} = Auth.encode_and_sign(person)
+      {:ok, user} ->
+        {:ok, token, _claims} = Auth.encode_and_sign(user)
 
         %{
           token: token
@@ -18,6 +18,16 @@ defmodule VaccinationApiWeb.AuthController do
 
       {:error, data} ->
         Response.error(data, conn)
+    end
+  end
+
+  def logout(conn, _params) do
+    token = conn.private.guardian_default_token
+
+    Auth.revoke(token)
+    |> case do
+      {:ok, _} -> Response.success(:ok, conn)
+      {:error, error} -> Response.error(error, conn)
     end
   end
 end

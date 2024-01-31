@@ -3,7 +3,7 @@ defmodule VaccinationApiWeb.Auth do
     Manages the Authenticated User
   """
   use Guardian, otp_app: :vaccination_api
-  alias VaccinationApi.Core.Person
+  alias VaccinationApi.Core.User
   alias VaccinationApiWeb.Auth.Plug
 
   @doc false
@@ -13,7 +13,7 @@ defmodule VaccinationApiWeb.Auth do
   end
 
   def resource_from_claims(%{"sub" => id}) do
-    Person.Api.get(id)
+    User.Api.get(id)
   end
 
   @doc """
