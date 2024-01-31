@@ -27,7 +27,7 @@ defmodule VaccinationApi.Core.User do
 
   def changeset_insert(model, attrs) do
     changeset_(model, attrs, :insert)
-    |> validate_required([:username, :email])
+    |> validate_required([:username, :email, :__password__])
     |> validate_format(:email, ~r/^[^\s]+@[^\s]+$/, message: "invalid email format")
     |> unique_constraint(:email)
     |> put_password_hash()
