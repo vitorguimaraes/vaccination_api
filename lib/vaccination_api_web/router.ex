@@ -76,10 +76,10 @@ defmodule VaccinationApiWeb.Router do
     scope "/" do
       pipe_through [:authed]
 
-      post "/vaccinations", VaccinationsController, :create
-      get "/vaccinations", VaccinationsController, :all
-      patch "/vaccinations/:vaccine_id", VaccinationsController, :patch
-      delete "/vaccinations/:vaccine_id", VaccinationsController, :delete
+      post "/vaccines", VaccinesController, :create
+      get "/vaccines", VaccinesController, :all
+      patch "/vaccines/:vaccine_id", VaccinesController, :patch
+      delete "/vaccines/:vaccine_id", VaccinesController, :delete
     end
 
     scope "/" do
