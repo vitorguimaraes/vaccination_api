@@ -1,46 +1,30 @@
-defmodule VaccinationApiWeb.VaccinationsController do
+defmodule VaccinationApiWeb.HealthCentersController do
   use VaccinationApiWeb, :controller
 
-  alias VaccinationApi.VaccinationContext
+  alias VaccinationApi.HealthCenterContext
   alias VaccinationApiWeb.{Auth, Response}
 
   def create(conn, params) do
     params
     |> Map.put("authed", Auth.get_user(conn))
     |> Map.put("permission", Auth.get_permission(conn))
-    |> VaccinationContext.create()
+    |> HealthCenterContext.create()
     |> Response.pipe(conn)
   end
 
-  def one_by_professional(conn, params) do
+  def one(conn, params) do
     params
     |> Map.put("authed", Auth.get_user(conn))
     |> Map.put("permission", Auth.get_permission(conn))
-    |> VaccinationContext.one_by_professional()
+    |> HealthCenterContext.one()
     |> Response.pipe(conn)
   end
 
-  def one_by_person(conn, params) do
+  def all(conn, params) do
     params
     |> Map.put("authed", Auth.get_user(conn))
     |> Map.put("permission", Auth.get_permission(conn))
-    |> VaccinationContext.one_by_person()
-    |> Response.pipe(conn)
-  end
-
-  def all_by_professional(conn, params) do
-    params
-    |> Map.put("authed", Auth.get_user(conn))
-    |> Map.put("permission", Auth.get_permission(conn))
-    |> VaccinationContext.all_by_professional()
-    |> Response.pipe(conn)
-  end
-
-  def all_by_person(conn, params) do
-    params
-    |> Map.put("authed", Auth.get_user(conn))
-    |> Map.put("permission", Auth.get_permission(conn))
-    |> VaccinationContext.all_by_person()
+    |> HealthCenterContext.all()
     |> Response.pipe(conn)
   end
 
@@ -48,7 +32,15 @@ defmodule VaccinationApiWeb.VaccinationsController do
     params
     |> Map.put("authed", Auth.get_user(conn))
     |> Map.put("permission", Auth.get_permission(conn))
-    |> VaccinationContext.patch()
+    |> HealthCenterContext.patch()
+    |> Response.pipe(conn)
+  end
+
+  def delete(conn, params) do
+    params
+    |> Map.put("authed", Auth.get_user(conn))
+    |> Map.put("permission", Auth.get_permission(conn))
+    |> HealthCenterContext.delete()
     |> Response.pipe(conn)
   end
 end

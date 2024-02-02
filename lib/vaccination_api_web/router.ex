@@ -29,9 +29,12 @@ defmodule VaccinationApiWeb.Router do
   scope "/api", VaccinationApiWeb do
     pipe_through [:api]
 
+    # user
+    post "/users", UsersController, :create
+
     # authenticate
     scope "/auth" do
-      post "/person_login", AuthController, :login
+      post "/login", AuthController, :login
 
       scope "/" do
         pipe_through [:authed]
@@ -40,15 +43,18 @@ defmodule VaccinationApiWeb.Router do
     end
 
     # person
-    post "/persons", PersonsController, :create
-
     scope "/" do
       pipe_through [:authed]
 
+      post "/persons", PersonsController, :create
       get "/persons/:person_id", PersonsController, :one
       get "/persons", PersonsController, :all
       patch "/persons/:person_id", PersonsController, :patch
       delete "/persons/:person_id", PersonsController, :delete
+
+      # person vaccinations
+      get "/persons/:person_id/vaccinations/:vaccination_id", VaccinationsController, :one_by_person
+      get "/persons/:person_id/vaccinations", VaccinationsController, :all_by_person
     end
 
     scope "/" do
@@ -59,16 +65,31 @@ defmodule VaccinationApiWeb.Router do
       get "/health_professionals", HealthProfessionalsController, :all
       patch "/health_professionals/:health_professional_id", HealthProfessionalsController, :patch
       delete "/health_professionals/:health_professional_id", HealthProfessionalsController, :delete
+
+      # health_professional vaccinations
+      post "/health_professionals/:health_professional_id/persons/:person_id/vaccinations", VaccinationsController, :create
+      get "/health_professionals/:health_professional_id/vaccinations/:vaccination_id", VaccinationsController, :one_by_professional
+      get "/health_professionals/:health_professional_id/vaccinations", VaccinationsController, :all_by_professional
+      patch "/health_professionals/:health_professional_id/vaccinations/:vaccination_id", VaccinationsController, :patch
     end
 
     scope "/" do
       pipe_through [:authed]
 
-      post "/vaccines", VaccinesController, :create
-      get "/vaccines/:vaccine_id", VaccinesController, :one
-      get "/vaccines", VaccinesController, :all
-      patch "/vaccines/:vaccine_id", VaccinesController, :patch
-      delete "/vaccines/:vaccine_id", VaccinesController, :delete
+      post "/vaccinations", VaccinationsController, :create
+      get "/vaccinations", VaccinationsController, :all
+      patch "/vaccinations/:vaccine_id", VaccinationsController, :patch
+      delete "/vaccinations/:vaccine_id", VaccinationsController, :delete
+    end
+
+    scope "/" do
+      pipe_through [:authed]
+
+      post "/health_centers", HealthCentersController, :create
+      get "/health_centers/:health_center_id", HealthCentersController, :one
+      get "/health_centers", HealthCentersController, :all
+      patch "/health_centers/:health_center_id", HealthCentersController, :patch
+      delete "/health_centers/:health_center_id", HealthCentersController, :delete
     end
   end
 

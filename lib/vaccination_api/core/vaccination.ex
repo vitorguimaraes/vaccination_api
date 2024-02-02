@@ -31,11 +31,7 @@ defmodule VaccinationApi.Core.Vaccination do
   def changeset_insert(model, attrs) do
     changeset_(model, attrs, :insert)
     |> validate_inclusion(:shot, @shot_enum)
-    |> cast_assoc(:person)
-    |> cast_assoc(:health_professional)
-    |> cast_assoc(:health_center)
-    |> cast_assoc(:vaccine)
-    |> validate_required([:person, :health_center, :health_professional, :vaccine])
+    |> validate_required([:person_id, :health_center_id, :health_professional_id, :vaccine_id])
   end
 
   def changeset_update(model, attrs), do: changeset_(model, attrs, :update)
