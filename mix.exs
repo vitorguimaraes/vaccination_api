@@ -55,6 +55,7 @@ defmodule VaccinationApi.MixProject do
       # other third party dependencies
       {:bee, "~> 0.4.2"},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:oban, "~> 2.17"},
       {:mix_test_watch, "~> 1.0", only: [:test], runtime: false},
       {:phoenix_swagger, github: "andridus/phoenix_swagger"},
       {:happy, "~> 1.3.1"},

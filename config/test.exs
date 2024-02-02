@@ -20,6 +20,8 @@ config :vaccination_api, VaccinationApiWeb.Endpoint,
   secret_key_base: "UUV5zVv83Q+X9Ji1uU98p5NG4jo/+90LkmzPAZNjqFbRJUU+ZCl+1eluKpcosJDo",
   server: false
 
+config :vaccination_api, Oban, testing: :inline
+
 # In test we don't send emails.
 config :vaccination_api, VaccinationApi.Mailer, adapter: Swoosh.Adapters.Test
 

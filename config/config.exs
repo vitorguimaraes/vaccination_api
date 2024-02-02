@@ -27,6 +27,11 @@ config :vaccination_api, VaccinationApiWeb.Auth,
 
   config :bee, :repo, VaccinationApi.Repo
 
+config :vaccination_api, Oban,
+  repo: VaccinationApi.Repo,
+  plugins: [Oban.Plugins.Pruner],
+  queues: [default: 10]
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

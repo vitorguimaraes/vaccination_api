@@ -12,6 +12,7 @@ defmodule VaccinationApi.Application do
       VaccinationApiWeb.Telemetry,
       # Start the Ecto repository
       VaccinationApi.Repo,
+      {Oban, Application.fetch_env!(:vaccination_api, Oban)},
       # Start the PubSub system
       {Phoenix.PubSub, name: VaccinationApi.PubSub},
       # Start Finch
