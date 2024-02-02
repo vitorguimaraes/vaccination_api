@@ -34,8 +34,8 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "${HOST_PORT}:${POSTGRES_PORT}"
-      # volumes:
-      # - ./data:/var/lib/postgresql/data
+    volumes:
+      - ./data:/var/lib/postgresql/data
     networks:
       - app_net
 
