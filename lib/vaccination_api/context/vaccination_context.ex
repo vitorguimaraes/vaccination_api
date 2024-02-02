@@ -3,6 +3,7 @@ defmodule VaccinationApi.VaccinationContext do
     Context of vaccination functions
   """
   alias VaccinationApi.Core.{HealthCenter, HealthProfessional, Person, Vaccination, Vaccine}
+  alias VaccinationApi.Jobs.RegisterVaccination
   alias VaccinationApi.Utils
   import Happy
 
@@ -26,11 +27,8 @@ defmodule VaccinationApi.VaccinationContext do
 
       # @granted_authed true = authed.id == vaccination_id
 
-      {:ok, vaccination} =
-        Vaccination.Api.insert(params)
-        |> Utils.visible_fields(permission)
-
-      {:ok, vaccination}
+      {:ok, _response} = RegisterVaccination.create_worker(params)
+      {:ok, :created}
     else
       {atom, {:error, error}} -> {:error, "#{atom}_#{error}"}
       {:error, error} -> {:error, error}
