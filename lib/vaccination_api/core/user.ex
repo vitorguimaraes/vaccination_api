@@ -41,11 +41,20 @@ defmodule VaccinationApi.Core.User do
   defp put_password_hash(%{changes: %{__password__: password}} = changeset) do
     if password && changeset.valid? do
       changeset
-      |> validate_length(:__password__, min: 8, message: "Password must be at least eight characters")
+      |> validate_length(:__password__,
+        min: 8,
+        message: "Password must be at least eight characters"
+      )
       |> validate_format(:__password__, ~r/[0-9]+/, message: "Password must contain a number")
-      |> validate_format(:__password__, ~r/[A-Z]+/, message: "Password must contain an upper-case letter")
-      |> validate_format(:__password__, ~r/[a-z]+/, message: "Password must contain a lower-case letter")
-      |> validate_format(:__password__, ~r/[#\!\?&@\$%^&*\(\)]+|[!?@#$%^&*_]/, message: "Password must contain a symbol")
+      |> validate_format(:__password__, ~r/[A-Z]+/,
+        message: "Password must contain an upper-case letter"
+      )
+      |> validate_format(:__password__, ~r/[a-z]+/,
+        message: "Password must contain a lower-case letter"
+      )
+      |> validate_format(:__password__, ~r/[#\!\?&@\$%^&*\(\)]+|[!?@#$%^&*_]/,
+        message: "Password must contain a symbol"
+      )
       |> put_change(:hashed_password, Bcrypt.hash_pwd_salt(password))
       |> delete_change(:__password__)
     else

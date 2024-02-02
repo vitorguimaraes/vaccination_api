@@ -32,7 +32,15 @@ defmodule VaccinationApi.Core.Person do
 
   def changeset_insert(model, attrs) do
     changeset_(model, attrs, :insert)
-    |> validate_required([:first_name, :last_name, :birth, :cpf, :sus_number, :mother_name, :gender])
+    |> validate_required([
+      :first_name,
+      :last_name,
+      :birth,
+      :cpf,
+      :sus_number,
+      :mother_name,
+      :gender
+    ])
     |> validate_cpf()
     |> unique_constraint(:cpf)
     |> unique_constraint(:sus_number)
@@ -56,7 +64,6 @@ defmodule VaccinationApi.Core.Person do
   end
 
   defp validate_cpf(%{changes: %{}} = changeset), do: changeset
-
 
   defmodule Api do
     @moduledoc false

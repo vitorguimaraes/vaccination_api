@@ -3,10 +3,10 @@ defmodule VaccinationApiWeb.Response do
     VaccinationApiWeb.Reponse
   """
 
-  alias VaccinationApi.Utils, as: VaccinationUtils
-  alias VaccinationApiWeb.StatusMessage
   alias Phoenix.Controller
   alias Plug.Conn.Utils
+  alias VaccinationApi.Utils
+  alias VaccinationApiWeb.StatusMessage
 
   import Plug.Conn
 
@@ -16,7 +16,7 @@ defmodule VaccinationApiWeb.Response do
   def error(message, conn, status \\ 422)
 
   def error(%Ecto.Changeset{} = changeset, conn, _status) do
-    data0 = VaccinationUtils.parse_changeset(changeset)
+    data0 = Utils.parse_changeset(changeset)
     data = %{details: data0, message: :form_error, status: 422}
 
     conn

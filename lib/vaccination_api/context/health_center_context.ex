@@ -34,7 +34,8 @@ defmodule VaccinationApi.HealthCenterContext do
 
     happy_path do
       # required params
-      @params_health_center_id {:ok, health_center_id} = Utils.get_param(params, "health_center_id")
+      @params_health_center_id {:ok, health_center_id} =
+                                 Utils.get_param(params, "health_center_id")
 
       @health_center {:ok, health_center} = HealthCenter.Api.get(health_center_id)
 
@@ -52,9 +53,7 @@ defmodule VaccinationApi.HealthCenterContext do
     authed = Access.get(params, "authed")
     permission = Access.get(params, "permission") || :basic
 
-    HealthCenter.Api.all(
-      select: HealthCenter.bee_permission(permission)
-    )
+    HealthCenter.Api.all(select: HealthCenter.bee_permission(permission))
   end
 
   def patch(params) do
@@ -63,7 +62,8 @@ defmodule VaccinationApi.HealthCenterContext do
 
     happy_path do
       # required params
-      @params_health_center_id {:ok, health_center_id} = Utils.get_param(params, "health_center_id")
+      @params_health_center_id {:ok, health_center_id} =
+                                 Utils.get_param(params, "health_center_id")
       @health_center {:ok, health_center} = HealthCenter.Api.get(health_center_id)
 
       # @granted_authed true = authed.id == health_center_id
@@ -82,7 +82,8 @@ defmodule VaccinationApi.HealthCenterContext do
 
     happy_path do
       # required params
-      @params_health_center_id {:ok, health_center_id} = Utils.get_param(params, "health_center_id")
+      @params_health_center_id {:ok, health_center_id} =
+                                 Utils.get_param(params, "health_center_id")
       @health_center {:ok, health_center} = HealthCenter.Api.get(health_center_id)
 
       # @granted_authed true = authed.id == health_center_id

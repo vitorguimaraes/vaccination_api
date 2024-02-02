@@ -15,7 +15,8 @@ defmodule VaccinationApi.HealthProfessionalContext do
       @params_first_name {:ok, _first_name} = Utils.get_param(params, "first_name")
       @params_last_name {:ok, _last_name} = Utils.get_param(params, "last_name")
       @params_cpf {:ok, _cpf} = Utils.get_param(params, "cpf")
-      @params_professional_register {:ok, _professional_register} = Utils.get_param(params, "professional_register")
+      @params_professional_register {:ok, _professional_register} =
+                                      Utils.get_param(params, "professional_register")
 
       @params_user {:ok, user_params} = Utils.get_param(params, "user")
       @user {:ok, user} = UserContext.create(user_params)
@@ -39,9 +40,11 @@ defmodule VaccinationApi.HealthProfessionalContext do
 
     happy_path do
       # required params
-      @params_health_professional_id {:ok, health_professional_id} = Utils.get_param(params, "health_professional_id")
+      @params_health_professional_id {:ok, health_professional_id} =
+                                       Utils.get_param(params, "health_professional_id")
 
-      @health_professional {:ok, health_professional} = HealthProfessional.Api.get(health_professional_id)
+      @health_professional {:ok, health_professional} =
+                             HealthProfessional.Api.get(health_professional_id)
 
       # @granted_authed true = authed.id == health_professional_id
 
@@ -57,9 +60,7 @@ defmodule VaccinationApi.HealthProfessionalContext do
     # authed = Access.get(params, "authed")
     permission = Access.get(params, "permission") || :basic
 
-    HealthProfessional.Api.all(
-      select: HealthProfessional.bee_permission(permission)
-    )
+    HealthProfessional.Api.all(select: HealthProfessional.bee_permission(permission))
   end
 
   def patch(params) do
@@ -68,8 +69,10 @@ defmodule VaccinationApi.HealthProfessionalContext do
 
     happy_path do
       # required params
-      @params_health_professional_id {:ok, health_professional_id} = Utils.get_param(params, "health_professional_id")
-      @health_professional {:ok, health_professional} = HealthProfessional.Api.get(health_professional_id)
+      @params_health_professional_id {:ok, health_professional_id} =
+                                       Utils.get_param(params, "health_professional_id")
+      @health_professional {:ok, health_professional} =
+                             HealthProfessional.Api.get(health_professional_id)
 
       # @granted_authed true = authed.id == health_professional_id
 
@@ -87,8 +90,10 @@ defmodule VaccinationApi.HealthProfessionalContext do
 
     happy_path do
       # required params
-      @params_health_professional_id {:ok, health_professional_id} = Utils.get_param(params, "health_professional_id")
-      @health_professional {:ok, health_professional} = HealthProfessional.Api.get(health_professional_id)
+      @params_health_professional_id {:ok, health_professional_id} =
+                                       Utils.get_param(params, "health_professional_id")
+      @health_professional {:ok, health_professional} =
+                             HealthProfessional.Api.get(health_professional_id)
 
       # @granted_authed true = authed.id == health_professional_id
 

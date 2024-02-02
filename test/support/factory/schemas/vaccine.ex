@@ -14,6 +14,6 @@ defmodule Factory.Vaccine do
       attrs
       |> Factory.vaccine()
 
-      Map.put(map, tag, vaccine)
+    Map.put(map, tag, vaccine)
   end
 end

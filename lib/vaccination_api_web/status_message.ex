@@ -13,7 +13,7 @@ defmodule VaccinationApiWeb.StatusMessage do
     {404, :not_found},
     {409, :conflict},
     {422, :form_error},
-    {500, :internal_server_error},
+    {500, :internal_server_error}
   ]
   def from_message("param_" <> _key), do: 400
 

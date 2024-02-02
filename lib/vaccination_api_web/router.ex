@@ -53,7 +53,10 @@ defmodule VaccinationApiWeb.Router do
       delete "/persons/:person_id", PersonsController, :delete
 
       # person vaccinations
-      get "/persons/:person_id/vaccinations/:vaccination_id", VaccinationsController, :one_by_person
+      get "/persons/:person_id/vaccinations/:vaccination_id",
+          VaccinationsController,
+          :one_by_person
+
       get "/persons/:person_id/vaccinations", VaccinationsController, :all_by_person
     end
 
@@ -64,13 +67,27 @@ defmodule VaccinationApiWeb.Router do
       get "/health_professionals/:health_professional_id", HealthProfessionalsController, :one
       get "/health_professionals", HealthProfessionalsController, :all
       patch "/health_professionals/:health_professional_id", HealthProfessionalsController, :patch
-      delete "/health_professionals/:health_professional_id", HealthProfessionalsController, :delete
+
+      delete "/health_professionals/:health_professional_id",
+             HealthProfessionalsController,
+             :delete
 
       # health_professional vaccinations
-      post "/health_professionals/:health_professional_id/persons/:person_id/vaccinations", VaccinationsController, :create
-      get "/health_professionals/:health_professional_id/vaccinations/:vaccination_id", VaccinationsController, :one_by_professional
-      get "/health_professionals/:health_professional_id/vaccinations", VaccinationsController, :all_by_professional
-      patch "/health_professionals/:health_professional_id/vaccinations/:vaccination_id", VaccinationsController, :patch
+      post "/health_professionals/:health_professional_id/persons/:person_id/vaccinations",
+           VaccinationsController,
+           :create
+
+      get "/health_professionals/:health_professional_id/vaccinations/:vaccination_id",
+          VaccinationsController,
+          :one_by_professional
+
+      get "/health_professionals/:health_professional_id/vaccinations",
+          VaccinationsController,
+          :all_by_professional
+
+      patch "/health_professionals/:health_professional_id/vaccinations/:vaccination_id",
+            VaccinationsController,
+            :patch
     end
 
     scope "/" do

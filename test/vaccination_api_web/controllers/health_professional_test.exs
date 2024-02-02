@@ -32,7 +32,7 @@ defmodule VaccinationApiWeb.Scenarios.HealthProfessionalRoutesTest do
       user_params = ctx[:user_params]
 
       assert %{"data" => %{"id" => _id} = user} =
-        post(anonymous_conn(), "/api/users", user_params) |> get_resp_body()
+               post(anonymous_conn(), "/api/users", user_params) |> get_resp_body()
 
       conn =
         authed_conn(user)
@@ -50,7 +50,7 @@ defmodule VaccinationApiWeb.Scenarios.HealthProfessionalRoutesTest do
       user_params = ctx[:user_params]
 
       assert %{"data" => %{"id" => _id} = user} =
-        post(anonymous_conn(), "/api/users", user_params) |> get_resp_body()
+               post(anonymous_conn(), "/api/users", user_params) |> get_resp_body()
 
       conn =
         get(
@@ -69,7 +69,7 @@ defmodule VaccinationApiWeb.Scenarios.HealthProfessionalRoutesTest do
       user_params = ctx[:user_params]
 
       assert %{"data" => %{"id" => _id} = user} =
-        post(anonymous_conn(), "/api/users", user_params) |> get_resp_body()
+               post(anonymous_conn(), "/api/users", user_params) |> get_resp_body()
 
       conn =
         get(
@@ -89,7 +89,7 @@ defmodule VaccinationApiWeb.Scenarios.HealthProfessionalRoutesTest do
       user_params = ctx[:user_params]
 
       assert %{"data" => %{"id" => _id} = user} =
-        post(anonymous_conn(), "/api/users", user_params) |> get_resp_body()
+               post(anonymous_conn(), "/api/users", user_params) |> get_resp_body()
 
       conn =
         patch(
@@ -110,7 +110,7 @@ defmodule VaccinationApiWeb.Scenarios.HealthProfessionalRoutesTest do
       user_params = ctx[:user_params]
 
       assert %{"data" => %{"id" => _id} = user} =
-        post(anonymous_conn(), "/api/users", user_params) |> get_resp_body()
+               post(anonymous_conn(), "/api/users", user_params) |> get_resp_body()
 
       conn =
         delete(

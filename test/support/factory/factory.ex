@@ -2,7 +2,7 @@ defmodule Factory do
   @moduledoc """
     This module configure default for all schemas for Factory tests
   """
-  alias VaccinationApi.Core.{HealthProfessional, Vaccine, Person}
+  alias VaccinationApi.Core.{HealthProfessional, Person, Vaccine}
   alias VaccinationApi.Repo
 
   @doc """

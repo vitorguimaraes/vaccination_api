@@ -52,9 +52,7 @@ defmodule VaccinationApi.VaccineContext do
     authed = Access.get(params, "authed")
     permission = Access.get(params, "permission") || :basic
 
-    Vaccine.Api.all(
-      select: Vaccine.bee_permission(permission)
-    )
+    Vaccine.Api.all(select: Vaccine.bee_permission(permission))
   end
 
   def patch(params) do

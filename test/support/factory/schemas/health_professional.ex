@@ -14,6 +14,6 @@ defmodule Factory.HealthProfessional do
       attrs
       |> Factory.health_professional()
 
-      Map.put(map, tag, health_professional)
+    Map.put(map, tag, health_professional)
   end
 end

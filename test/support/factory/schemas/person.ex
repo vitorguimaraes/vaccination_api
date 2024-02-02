@@ -14,6 +14,6 @@ defmodule Factory.Person do
       attrs
       |> Factory.person()
 
-      Map.put(map, tag, person)
+    Map.put(map, tag, person)
   end
 end
