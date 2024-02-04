@@ -14,9 +14,14 @@ defmodule VaccinationApi.Core.HealthCenter do
     permission(:basic, @basic_fields)
 
     schema "health_centers" do
-      field :name, :string
-      field :phone, :string
-      field :CNES, :string
+      field :name, :string,
+        __swagger__: [description: "health center's name", example: "Unidade Básica de Saúde"]
+
+      field :phone, :string,
+        __swagger__: [description: "health center's phone", example: "85993782314"]
+
+      field :CNES, :string,
+        __swagger__: [description: "health center's CNES", example: "123543513"]
 
       timestamps()
 

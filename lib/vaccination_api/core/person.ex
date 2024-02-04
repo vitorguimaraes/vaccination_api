@@ -15,13 +15,25 @@ defmodule VaccinationApi.Core.Person do
     permission(:basic, @basic_fields)
 
     schema "persons" do
-      field :first_name, :string
-      field :last_name, :string
-      field :birth, :date
-      field :cpf, :string
-      field :sus_number, :string
-      field :mother_name, :string
-      field :gender, Ecto.Enum, values: @gender_enum
+      field :first_name, :string,
+        __swagger__: [description: "person's first name", example: "Joe"]
+
+      field :last_name, :string, __swagger__: [description: "person's last name", example: "Doe"]
+
+      field :birth, :date,
+        __swagger__: [description: "person's birth date", example: "1990-09-23"]
+
+      field :cpf, :string, __swagger__: [description: "person's CPF", example: "164.892.360-79"]
+
+      field :sus_number, :string,
+        __swagger__: [description: "person's SUS number", example: "123456789ABCDEF"]
+
+      field :mother_name, :string,
+        __swagger__: [description: "person's mother name", example: "Marylin Roberts"]
+
+      field :gender, Ecto.Enum,
+        values: @gender_enum,
+        __swagger__: [description: "person's gender", example: "male", enum: @gender_enum]
 
       timestamps()
 

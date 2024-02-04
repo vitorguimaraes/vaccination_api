@@ -14,9 +14,12 @@ defmodule VaccinationApi.Core.Vaccine do
     permission(:basic, @basic_fields)
 
     schema "vaccines" do
-      field :name, :string
-      field :lot, :string
-      field :expiration_date, :date
+      field :name, :string, __swagger__: [description: "vaccine's name", example: "Pfizer"]
+
+      field :lot, :string, __swagger__: [description: "vaccine's lot", example: "ABCXYZ123"]
+
+      field :expiration_date, :date,
+        __swagger__: [description: "vaccine's expiration date", example: "2024-05-12"]
 
       timestamps()
 

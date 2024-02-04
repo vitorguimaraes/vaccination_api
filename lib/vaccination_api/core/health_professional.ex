@@ -14,10 +14,17 @@ defmodule VaccinationApi.Core.HealthProfessional do
     permission(:basic, @basic_fields)
 
     schema "health_professionals" do
-      field :first_name, :string
-      field :last_name, :string
-      field :cpf, :string
-      field :professional_register, :string
+      field :first_name, :string,
+        __swagger__: [description: "health professional's first name", example: "Joe"]
+
+      field :last_name, :string,
+        __swagger__: [description: "health professional's last name", example: "Doe"]
+
+      field :cpf, :string,
+        __swagger__: [description: "health professional's CPF", example: "164.892.360-79"]
+
+      field :professional_register, :string,
+        __swagger__: [description: "health professional's register", example: "CREMEC-12345"]
 
       timestamps()
 

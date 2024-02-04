@@ -15,8 +15,13 @@ defmodule VaccinationApi.Core.Vaccination do
     permission(:basic, @basic_fields)
 
     schema "vaccinations" do
-      field :shot, Ecto.Enum, values: @shot_enum
-      field :date, :utc_datetime
+      field :shot, Ecto.Enum,
+        values: @shot_enum,
+        __swagger__: [description: "vaccine shot", example: "shot_1", enum: @shot_enum]
+
+      field :date, :utc_datetime,
+        __swagger__: [description: "vaccination date", example: "2024-01-28T12:34:56.789Z"]
+
       field :token, :string, default: Ecto.UUID.generate()
 
       timestamps()

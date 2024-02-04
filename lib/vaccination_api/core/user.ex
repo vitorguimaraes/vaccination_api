@@ -12,9 +12,15 @@ defmodule VaccinationApi.Core.User do
     permission(:basic, @basic_fields)
 
     schema "users" do
-      field :username, :string
-      field :email, :string
-      field :is_admin?, :boolean, default: false
+      field :username, :string, __swagger__: [description: "username", example: "joe_doe"]
+
+      field :email, :string,
+        __swagger__: [description: "email of user", example: "joe_doe@gmail.com"]
+
+      field :is_admin?, :boolean,
+        default: false,
+        __swagger__: [description: "flag to set admin", example: "true"]
+
       field :__password__, :string, virtual: true, redact: true
       field :hashed_password, :string, redact: true
 
