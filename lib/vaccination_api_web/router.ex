@@ -110,6 +110,21 @@ defmodule VaccinationApiWeb.Router do
     end
   end
 
+  scope "/swagger" do
+    forward "/", PhoenixSwagger.Plug.SwaggerUI,
+      otp_app: :vaccination_api,
+      swagger_file: "swagger.json"
+  end
+
+  def swagger_info do
+    %{
+      info: %{
+        version: "1.0",
+        title: "VaccinationApi"
+      }
+    }
+  end
+
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:vaccination_api, :dev_routes) do
     # If you want to use the LiveDashboard in production, you should put

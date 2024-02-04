@@ -7,6 +7,19 @@
 # General application configuration
 import Config
 
+config :vaccination_api, :swagger,
+  host: "localhost",
+  port: 4000,
+  scheme: "http",
+  base_module: "VaccinationApi",
+  swagger_files: %{
+    "priv/static/swagger.json" => [
+      router: VaccinationApiWeb.Router
+    ]
+  }
+
+config :vaccination_api, swagger_json_library: Jason
+
 config :vaccination_api,
   ecto_repos: [VaccinationApi.Repo]
 
