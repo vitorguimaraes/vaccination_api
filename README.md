@@ -7,7 +7,7 @@
 
 # VaccinationApi
 A Vaccination API with the main entities: persons, health_professionals, vaccines, vaccinations, and health_centers. 
-This project simulates a system for applying and storing information about vaccinations. For this, we have two roles: persons and health_professionals, each one with your own authentication rules and permission levels. The technology used to implement this was [Guardian](https://hexdocs.pm/guardian/Guardian.html).
+This project simulates a system for applying and storing information about vaccinations. For this, we have two roles: persons and health_professionals, each one with your own authentication rules and permission levels. The technology used to implement this was [Guardian](https://hexdocs.pm/guardian/Guardian.html). <br/>
 One faced challenge was implementing the processing of many vaccinations simultaneously because not handling this case could crash the database. For this, [Oban](https://hexdocs.pm/oban/Oban.html) was used, a flexible library that can handle a wide range of background jobs.
 
 ## The Database Model
