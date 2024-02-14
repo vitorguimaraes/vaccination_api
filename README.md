@@ -1,3 +1,10 @@
+![Elixir](https://img.shields.io/badge/elixir-%234B275F.svg?style=for-the-badge&logo=elixir&logoColor=white)
+![Phoenix](https://img.shields.io/badge/Phoenix%20Framework-FD4F00?style=for-the-badge&logo=phoenixframework&logoColor=fff)
+![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white)
+![Postgres](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
+
+
 # VaccinationApi
 A Vaccination API with the main entities: persons, health_professionals, vaccines, vaccinations, and health_centers. 
 This project simulates a system for applying and storing information about vaccinations. For this, we have two roles: persons and health_professionals, each one with your own authentication rules and permission levels. The technology used to implement this was [Guardian](https://hexdocs.pm/guardian/Guardian.html).
