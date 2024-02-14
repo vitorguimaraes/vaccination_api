@@ -36,11 +36,13 @@ One faced challenge was implementing the processing of many vaccinations simulta
 
 ## Insomnia
 - Use `insomnia.json` to configure the routes
-- {
+```
+{
 	"base_url": "http://127.0.0.1:4000",
 	"token": "Response → Body Attribute"
 }
-Configure the token response:
+```
+Configure the token response: <br/>
 - Request: [Auth] POST user login
 - Filter (JSONPath or XPath): $data.token
 - Trigger Behavior: Always - resend request when needed 
