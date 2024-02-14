@@ -34,6 +34,10 @@ One faced challenge was implementing the processing of many vaccinations simulta
 - Run the server: `make app` or `iex -S mix phx.server`
 - Visit Swagger Page http://localhost:4000/swagger
 
+## Running Tests
+- Run `./_scripts/dev.sh`
+- Run `make app.test`
+
 ## Insomnia
 - Use `insomnia.json` to configure the routes
 - **Environment**
