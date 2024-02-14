@@ -35,7 +35,7 @@ One faced challenge was implementing the processing of many vaccinations simulta
 - Visit Swagger Page http://localhost:4000/swagger
 
 ## Running Tests
-- Run `./_scripts/dev.sh`
+- Run `./scripts/dev.sh`
 - Run `make app.test`
 
 ## Insomnia
