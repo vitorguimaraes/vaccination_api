@@ -36,6 +36,7 @@ One faced challenge was implementing the processing of many vaccinations simulta
 
 ## Insomnia
 - Use `insomnia.json` to configure the routes
+- **Environment**
 ```
 {
 	"base_url": "http://127.0.0.1:4000",
