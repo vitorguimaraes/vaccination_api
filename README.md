@@ -49,10 +49,10 @@ Configure the token response: <br/>
 - Trigger Behavior: Always - resend request when needed 
 
 # TO DO
-- [ ] Implement the roles and permissions system for Persons and Health Professionals
-- [ ] Protect endpoints with permission levels
+- [ ] Implement the roles and permissions system for Admin, Persons and Health Professionals
+- [ ] Secure endpoints with permission levels
 - [ ] Create an endpoint to validate vaccination token
-- [ ] Handle vaccine stock from Health Center when register a vaccination (decrease stock)
-- [ ] Check if Health Center has stock of the vaccine before register vaccination 
-- [ ] Check if the Health Professional works at the Healh Center before register the Vaccination
-- [ ] Add Address entity and relationships
+- [ ] Manage vaccine stock at the Health Center when register a vaccination (decrease stock)
+- [ ] Check if the Health Center has sufficient stock of the vaccine before registering a vaccination 
+- [ ] Verify if the health professional works at the health center before registering the vaccination.
+- [ ] Include Address entity and relationships
